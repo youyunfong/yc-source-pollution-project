@@ -1,0 +1,2 @@
+com.ycsoft.framework.tracer.config.PollutionTracerAutoConfiguration
+com.ycsoft.framework.tracer.config.PollutionMetricsAutoConfiguration

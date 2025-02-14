@@ -1,0 +1,2 @@
+com.ycsoft.framework.redis.config.PollutionRedisAutoConfiguration
+com.ycsoft.framework.redis.config.PollutionCacheAutoConfiguration

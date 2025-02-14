@@ -1,0 +1,3 @@
+com.ycsoft.framework.mq.redis.config.PollutionRedisMQProducerAutoConfiguration
+com.ycsoft.framework.mq.redis.config.PollutionRedisMQConsumerAutoConfiguration
+com.ycsoft.framework.mq.rabbitmq.config.PollutionRabbitMQAutoConfiguration

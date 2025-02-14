@@ -1,0 +1,3 @@
+com.ycsoft.framework.datasource.config.PollutionDataSourceAutoConfiguration
+com.ycsoft.framework.mybatis.config.PollutionMybatisAutoConfiguration
+com.ycsoft.framework.translate.config.PollutionTranslateAutoConfiguration

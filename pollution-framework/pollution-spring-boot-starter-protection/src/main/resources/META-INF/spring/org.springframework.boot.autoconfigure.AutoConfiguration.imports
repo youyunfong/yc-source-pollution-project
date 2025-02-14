@@ -1,0 +1,4 @@
+com.ycsoft.framework.idempotent.config.PollutionIdempotentConfiguration
+com.ycsoft.framework.lock4j.config.PollutionLock4jConfiguration
+com.ycsoft.framework.ratelimiter.config.PollutionRateLimiterConfiguration
+com.ycsoft.framework.signature.config.PollutionApiSignatureAutoConfiguration

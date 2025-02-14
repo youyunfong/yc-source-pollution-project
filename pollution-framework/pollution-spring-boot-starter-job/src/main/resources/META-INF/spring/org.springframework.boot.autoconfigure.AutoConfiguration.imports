@@ -1,0 +1,2 @@
+com.ycsoft.framework.quartz.config.PollutionQuartzAutoConfiguration
+com.ycsoft.framework.quartz.config.PollutionAsyncAutoConfiguration

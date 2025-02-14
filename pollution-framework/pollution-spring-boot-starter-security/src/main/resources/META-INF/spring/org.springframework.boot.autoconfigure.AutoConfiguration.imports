@@ -1,0 +1,3 @@
+com.ycsoft.framework.security.config.PollutionSecurityAutoConfiguration
+com.ycsoft.framework.security.config.PollutionWebSecurityConfigurerAdapter
+com.ycsoft.framework.operatelog.config.PollutionOperateLogConfiguration

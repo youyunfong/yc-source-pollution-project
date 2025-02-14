@@ -1,0 +1,6 @@
+com.ycsoft.framework.apilog.config.PollutionApiLogAutoConfiguration
+com.ycsoft.framework.jackson.config.PollutionJacksonAutoConfiguration
+com.ycsoft.framework.swagger.config.PollutionSwaggerAutoConfiguration
+com.ycsoft.framework.web.config.PollutionWebAutoConfiguration
+com.ycsoft.framework.xss.config.PollutionXssAutoConfiguration
+com.ycsoft.framework.banner.config.PollutionBannerAutoConfiguration
