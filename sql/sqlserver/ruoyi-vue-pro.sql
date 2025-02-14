@@ -5606,7 +5606,7 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_notice ON
 GO
-INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'芋道的公众', N'<p>新版本内容133</p>', 1, 0, N'admin', N'2021-01-05 17:03:48', N'1', N'2022-05-04 21:00:20', N'0', 1)
+INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'颐川的公众', N'<p>新版本内容133</p>', 1, 0, N'admin', N'2021-01-05 17:03:48', N'1', N'2022-05-04 21:00:20', N'0', 1)
 GO
 INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'维护通知：2018-07-01 系统凌晨维护', N'<p><img src="http://test.pollution.iocoder.cn/b7cb3cf49b4b3258bf7309a09dd2f4e5.jpg" alt="" data-href="" style=""/>11112222</p>', 2, 1, N'admin', N'2021-01-05 17:03:48', N'1', N'2023-12-02 20:07:26', N'0', 1)
 GO
@@ -10104,7 +10104,7 @@ INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobi
 GO
 INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, website, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (121, N'小租户', 110, N'小王2', N'15601691300', 0, N'zsxq.iocoder.cn', 111, N'2024-03-11 00:00:00', 20, N'1', N'2022-02-22 00:56:14', N'1', N'2023-11-06 11:41:47', N'0')
 GO
-INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, website, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (122, N'测试租户', 113, N'芋道', N'15601691300', 0, N'test.iocoder.cn', 111, N'2022-04-30 00:00:00', 50, N'1', N'2022-03-07 21:37:58', N'1', N'2023-11-06 11:41:53', N'0')
+INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, website, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (122, N'测试租户', 113, N'颐川', N'15601691300', 0, N'test.iocoder.cn', 111, N'2022-04-30 00:00:00', 50, N'1', N'2022-03-07 21:37:58', N'1', N'2023-11-06 11:41:53', N'0')
 GO
 SET IDENTITY_INSERT system_tenant OFF
 GO
@@ -10660,7 +10660,7 @@ SET IDENTITY_INSERT system_users ON
 GO
 INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'admin', N'$2a$10$mRMIYLDtRHlf6.9ipiqH1.Z.bh/R9dO9d5iHiGYPigi6r5KOoR2Wm', N'颐川科技', N'管理员', 103, N'[1]', N'aoteman@126.com', N'18818260277', 2, N'http://test.pollution.iocoder.cn/96c787a2ce88bf6d0ce3cd8b6cf5314e80e7703cd41bf4af8cd2e2909dbd6b6d.png', 0, N'0:0:0:0:0:0:0:1', N'2024-04-29 21:50:32', N'admin', N'2021-01-05 17:03:47', NULL, N'2024-04-29 21:50:32', N'0', 1)
 GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (100, N'pollution', N'$2a$10$11U48RhyJ5pSBYWSn12AD./ld671.ycSzJHbyrtpeoMeYiw31eo8a', N'芋道', N'不要吓我', 104, N'[1]', N'pollution@iocoder.cn', N'15601691300', 1, N'', 1, N'127.0.0.1', N'2022-07-09 23:03:33', N'', N'2021-01-07 09:07:17', NULL, N'2022-07-09 23:03:33', N'0', 1)
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (100, N'pollution', N'$2a$10$11U48RhyJ5pSBYWSn12AD./ld671.ycSzJHbyrtpeoMeYiw31eo8a', N'颐川', N'不要吓我', 104, N'[1]', N'pollution@iocoder.cn', N'15601691300', 1, N'', 1, N'127.0.0.1', N'2022-07-09 23:03:33', N'', N'2021-01-07 09:07:17', NULL, N'2022-07-09 23:03:33', N'0', 1)
 GO
 INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (103, N'yuanma', N'$2a$10$YMpimV4T6BtDhIaA8jSW.u8UTGBeGhc/qwXP4oxoMr4mOw9.qttt6', N'源码', NULL, 106, NULL, N'yuanma@iocoder.cn', N'15601701300', 0, N'', 0, N'0:0:0:0:0:0:0:1', N'2024-03-18 21:09:04', N'', N'2021-01-13 23:50:35', NULL, N'2024-03-18 21:09:04', N'0', 1)
 GO
@@ -10678,7 +10678,7 @@ INSERT INTO system_users (id, username, password, nickname, remark, dept_id, pos
 GO
 INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (112, N'newobject', N'$2a$04$dB0z8Q819fJWz0hbaLe6B.VfHCjYgWx6LFfET5lyz3JwcqlyCkQ4C', N'新对象', NULL, 100, N'[]', N'', N'15601691235', 1, N'', 0, N'0:0:0:0:0:0:0:1', N'2024-03-16 23:11:38', N'1', N'2022-02-23 19:08:03', NULL, N'2024-03-16 23:11:38', N'0', 1)
 GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (113, N'aoteman', N'$2a$10$0acJOIk2D25/oC87nyclE..0lzeu9DtQ/n3geP4fkun/zIVRhHJIO', N'芋道', NULL, NULL, NULL, N'', N'15601691300', 0, N'', 0, N'127.0.0.1', N'2022-03-19 18:38:51', N'1', N'2022-03-07 21:37:58', NULL, N'2022-03-19 18:38:51', N'0', 122)
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (113, N'aoteman', N'$2a$10$0acJOIk2D25/oC87nyclE..0lzeu9DtQ/n3geP4fkun/zIVRhHJIO', N'颐川', NULL, NULL, NULL, N'', N'15601691300', 0, N'', 0, N'127.0.0.1', N'2022-03-19 18:38:51', N'1', N'2022-03-07 21:37:58', NULL, N'2022-03-19 18:38:51', N'0', 122)
 GO
 INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (114, N'hrmgr', N'$2a$10$TR4eybBioGRhBmDBWkqWLO6NIh3mzYa8KBKDDB5woiGYFVlRAi.fu', N'hr 小姐姐', NULL, NULL, N'[5]', N'', N'15601691236', 1, N'', 0, N'0:0:0:0:0:0:0:1', N'2024-03-24 22:21:05', N'1', N'2022-03-19 21:50:58', NULL, N'2024-03-24 22:21:05', N'0', 1)
 GO

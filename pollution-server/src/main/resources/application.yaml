@@ -202,7 +202,7 @@ spring:
 #  #    base-url: https://suno-55ishh05u-status2xxs-projects.vercel.app
 #      base-url: http://127.0.0.1:3001
 
---- #################### 芋道相关配置 ####################
+--- #################### 颐川相关配置 ####################
 
 pollution:
   info:

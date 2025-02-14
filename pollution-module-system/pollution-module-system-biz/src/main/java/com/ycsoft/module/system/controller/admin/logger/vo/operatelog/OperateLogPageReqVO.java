@@ -13,7 +13,7 @@ import static com.ycsoft.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_
 @Data
 public class OperateLogPageReqVO extends PageParam {
 
-    @Schema(description = "用户编号", example = "芋道")
+    @Schema(description = "用户编号", example = "颐川")
     private Long userId;
 
     @Schema(description = "操作模块业务编号", example = "1")
