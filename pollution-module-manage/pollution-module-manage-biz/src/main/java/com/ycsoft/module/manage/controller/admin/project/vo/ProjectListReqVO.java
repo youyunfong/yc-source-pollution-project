@@ -1,5 +1,6 @@
 package com.ycsoft.module.manage.controller.admin.project.vo;
 
+import com.ycsoft.framework.common.pojo.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProjectListReqVO {
+public class ProjectListReqVO extends PageParam {
 
     @Schema(description = "项目名称", example = "Project A")
     private String projectName;

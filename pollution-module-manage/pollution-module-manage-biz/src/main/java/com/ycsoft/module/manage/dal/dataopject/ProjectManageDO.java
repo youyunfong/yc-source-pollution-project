@@ -2,6 +2,7 @@ package com.ycsoft.module.manage.dal.dataopject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fhs.core.trans.vo.TransPojo;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,5 +46,6 @@ public class ProjectManageDO implements Serializable, TransPojo {
     private String lat;
 
     @Schema(description = "逻辑删除标志 (1表示删除)", example = "0")
+    @TableLogic
     private Integer deleted;
 }
