@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycsoft.module.manage.dal.mysql.flow.FlowHistoryMapper">
+    <select id="getFlowHistoryDay" resultType="com.ycsoft.module.manage.dal.dataopject.FlowHistoryDO">
+        WITH RECURSIVE date_series AS (
+        -- 递归生成指定日期范围内的所有日期
+        SELECT DATE(#{startTime}) AS date
+        UNION ALL
+        SELECT DATE_ADD(date, INTERVAL 1 DAY)
+        FROM date_series
+        WHERE date &lt;= #{endTime} -- 修改结束日期为 2025-02-21
+        ),
+        device_list AS (
+        -- 获取特定设备 ID（过滤设备）
+        SELECT DISTINCT factory_device_id
+        FROM flow_history
+        WHERE factory_device_id = #{factoryDeviceId}
+        )
+        SELECT
+        d.factory_device_id,
+        ds.date as tm,
+        COALESCE(MAX(f.flow), 0) AS flow
+        FROM
+        date_series ds
+        CROSS JOIN
+        device_list d
+        LEFT JOIN
+        flow_history f
+        ON
+        ds.date = DATE(f.tm) AND d.factory_device_id = f.factory_device_id
+        GROUP BY
+        d.factory_device_id, ds.date
+        ORDER BY
+        ds.date, d.factory_device_id;
+    </select>
+</mapper>

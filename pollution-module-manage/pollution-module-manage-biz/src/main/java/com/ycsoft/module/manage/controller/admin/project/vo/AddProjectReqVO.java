@@ -1,6 +1,7 @@
 package com.ycsoft.module.manage.controller.admin.project.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,21 +12,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProjectListRespVO {
+public class AddProjectReqVO {
+    @NotEmpty
     @Schema(description = "项目ID", example = "proj123")
     private String projectId;
-
+    @NotEmpty
     @Schema(description = "项目名称", example = "Project A")
     private String projectName;
 
-    @Schema(description = "行政区域", example = "area456")
-    private String areaName;
+    @Schema(description = "行政区域ID", example = "area456")
+    private String areaId;
 
     @Schema(description = "项目管理员ID", example = "man789")
-    private String projectManName;
+    private String projectMan;
 
     @Schema(description = "设备管理员ID", example = "dev012")
-    private String deviceManName;
+    private String deviceMan;
 
     @Schema(description = "项目年份", example = "2023")
     private String projectYear;

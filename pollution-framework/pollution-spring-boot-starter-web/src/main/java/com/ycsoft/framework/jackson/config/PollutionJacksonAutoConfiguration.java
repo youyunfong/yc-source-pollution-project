@@ -1,6 +1,8 @@
 package com.ycsoft.framework.jackson.config;
 
 import cn.hutool.core.collection.CollUtil;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.ycsoft.framework.common.util.json.JsonUtils;
 import com.ycsoft.framework.common.util.json.databind.NumberSerializer;
 import com.ycsoft.framework.common.util.json.databind.TimestampLocalDateTimeDeserializer;
@@ -18,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @AutoConfiguration
@@ -38,8 +41,8 @@ public class PollutionJacksonAutoConfiguration {
                 .addSerializer(LocalTime.class, LocalTimeSerializer.INSTANCE)
                 .addDeserializer(LocalTime.class, LocalTimeDeserializer.INSTANCE)
                 // 新增 LocalDateTime 序列化、反序列化规则，使用 Long 时间戳
-                .addSerializer(LocalDateTime.class, TimestampLocalDateTimeSerializer.INSTANCE)
-                .addDeserializer(LocalDateTime.class, TimestampLocalDateTimeDeserializer.INSTANCE);
+                .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ISO_DATE_TIME))
+                .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
         // 1.2 注册到 objectMapper
         objectMappers.forEach(objectMapper -> objectMapper.registerModule(simpleModule));
 

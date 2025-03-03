@@ -6,10 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fhs.core.trans.vo.TransPojo;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -18,7 +15,9 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectManageDO implements Serializable, TransPojo {
+@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+public class ProjectManageDO implements Serializable {
 
     @TableId(type = IdType.ASSIGN_ID)
     @Schema(description = "项目ID", example = "proj123")

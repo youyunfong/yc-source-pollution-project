@@ -38,6 +38,10 @@
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+        <groupId>org.eclipse.paho</groupId>
+        <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

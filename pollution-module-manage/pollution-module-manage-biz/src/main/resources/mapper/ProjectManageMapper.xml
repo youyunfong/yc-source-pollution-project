@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycsoft.module.manage.dal.mysql.project.ProjectManageMapper">
+    <select id="getProjectPage"
+            resultType="com.ycsoft.module.manage.controller.admin.project.vo.ProjectListRespVO">
+        SELECT
+        t.project_id,
+        t.project_name,
+        a.area_name,
+        u.nickname as project_man_name,
+        u2.nickname as device_man_name,
+        t.project_year,
+        t.lng,
+        t.lat
+        FROM
+        project_manage t
+        left join admin_area a on a.area_id = t.area_id
+        left join system_users u on u.id = t.project_man
+        left join system_users u2 on u2.id = t.device_man
+        <where>
+            <if test="reqVO.projectMan != null and reqVO.projectMan != ''">
+                and t.project_man like concat('%',#{reqVO.projectMan},'%')
+            </if>
+            <if test="reqVO.projectName != null and reqVO.projectName != ''">
+                and t.project_name like concat('%',#{reqVO.projectName},'%')
+            </if>
+            <if test="reqVO.areaId != null and reqVO.areaId != ''">
+                and t.area_id = #{reqVO.areaId}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -6,15 +6,18 @@ import com.ycsoft.framework.common.util.object.BeanUtils;
 import com.ycsoft.framework.ip.core.Area;
 import com.ycsoft.framework.ip.core.utils.AreaUtils;
 import com.ycsoft.framework.ip.core.utils.IPUtils;
+import com.ycsoft.module.system.controller.admin.ip.vo.AdcdInfoRespVO;
+import com.ycsoft.module.system.controller.admin.ip.vo.AdcdParamsReqVO;
 import com.ycsoft.module.system.controller.admin.ip.vo.AreaNodeRespVO;
+import com.ycsoft.module.system.service.area.AdminAreaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.PermitAll;
+import jodd.util.StringUtil;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +28,8 @@ import static com.ycsoft.framework.common.pojo.CommonResult.success;
 @RequestMapping("/system/area")
 @Validated
 public class AreaController {
-
+    @Resource
+    private AdminAreaService adminAreaService;
     @GetMapping("/tree")
     @Operation(summary = "获得地区树")
     public CommonResult<List<AreaNodeRespVO>> getAreaTree() {
@@ -47,4 +51,12 @@ public class AreaController {
         return success(AreaUtils.format(area.getId()));
     }
 
+
+    @PostMapping("/AdcdTreeList")
+    @Operation(summary = "浙江行政区划-树形列表")
+    @PermitAll
+    public CommonResult<List<AdcdInfoRespVO>> getAdcdTreeList(@RequestBody AdcdParamsReqVO params){
+        List<AdcdInfoRespVO> list = adminAreaService.getAdcdTreeList(params);
+        return success(list);
+    }
 }

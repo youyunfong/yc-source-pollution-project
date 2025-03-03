@@ -2,6 +2,7 @@ package com.ycsoft.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * 项目的启动类
@@ -13,7 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author 颐川科技
  */
 @SuppressWarnings("SpringComponentScan") // 忽略 IDEA 无法识别 ${pollution.info.base-package}
-@SpringBootApplication(scanBasePackages = {"${pollution.info.base-package}.server", "${pollution.info.base-package}.module"})
+@SpringBootApplication(scanBasePackages = {"${pollution.info.base-package}.server", "${pollution.info.base-package}.module", "${pollution.info.base-package}.framework.mq.mqtt"})
+@EnableAsync
 public class PollutionServerApplication {
 
     public static void main(String[] args) {

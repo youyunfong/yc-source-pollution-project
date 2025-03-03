@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycsoft.module.manage.dal.mysql.device.DeviceInfoMapper">
+
+    <select id="getPollutionPage"
+            resultType="com.ycsoft.module.manage.controller.admin.pollution.vo.PollutionListRespVO">
+        SELECT
+        d.device_id,
+        d.project_id,
+        p.project_man,
+        d.factory_device_id,
+        d.device_name,
+        d.insert_time,
+        d.device_type,
+        d.video,
+        d.lng,
+        d.lat,
+        w.water,
+        w.tm AS water_tm,
+        f.flow,
+        f.tm as flow_tm,
+        g.grade,
+        g.tm as grade_tm,
+        d.shortcut
+        d.status
+        FROM
+        device_info d
+        LEFT JOIN
+        project_manage p ON d.project_id = p.project_id
+        left JOIN
+        grade_realtime g ON d.factory_device_id = g.factory_device_id
+        LEFT JOIN
+        flow_realtime f ON d.factory_device_id = f.factory_device_id
+        LEFT JOIN
+        water_realtime w ON d.factory_device_id = w.factory_device_id
+        WHERE d.deleted = 0 and d.factory_device_id IS NOT NULL
+        <if test="reqVO.projectId != null and reqVO.projectId != ''">
+            AND d.project_id = #{reqVO.projectId}
+        </if>
+        <if test="reqVO.deviceName != null and reqVO.deviceName != ''">
+            AND d.device_name LIKE CONCAT(CONCAT('%', #{reqVO.deviceName}), '%')
+        </if>
+
+    </select>
+</mapper>

@@ -221,7 +221,7 @@ pollution:
     refund-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
     transfer-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/transfer # 支付渠道的【转账】回调地址
   access-log: # 访问日志的配置项
-    enable: false
+    enable: true
   demo: false # 关闭演示模式
   wxa-code:
     env-version: develop # 小程序版本: 正式版为 "release"；体验版为 "trial"；开发版为 "develop"
@@ -255,3 +255,15 @@ justauth:
     type: REDIS
     prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
     timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
+
+# mqtt 配置
+mqtt:
+  broker-url: tcp://120.79.137.28:1883
+  client-id: mqttx_pollution
+  username: source_pollution
+  password: yckj1234
+  topic: /dev/coo/+
+  persistence-dir: /Service/tmp/mqtt-persistence
+  keep-alive-interval: 60
+  connection-timeout: 30
+  max-reconnect-delay: 30000

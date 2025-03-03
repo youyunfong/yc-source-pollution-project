@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycsoft.module.system.dal.mysql.area.AdminAreaMapper">
+    <select id="getAdcdTreeList" resultType="com.ycsoft.module.system.controller.admin.ip.vo.AdcdInfoRespVO">
+        SELECT a.area_id,
+        a.area_code,
+        a.area_name,
+        a.father_code,
+        a.area_level,
+        a.complete_area_name
+        FROM admin_area a
+        WHERE a.deleted = 0
+        <if test="params.type != null and params.type != ''">
+            <choose>
+                <when test="params.type == 2">
+                    AND (a.area_level BETWEEN 1 AND 2)
+                </when>
+                <when test="params.type == 3">
+                    AND (a.area_level BETWEEN 1 AND 3)
+                </when>
+                <when test="params.type == 1">
+                    AND (a.area_level = 1)
+                </when>
+                <otherwise>
+                    AND (a.area_level BETWEEN 1 AND 4)
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY a.area_level ASC,
+        a.area_code ASC
+    </select>
+</mapper>
