@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import static com.mysql.cj.util.TimeUtil.DATE_FORMATTER;
-
 @Slf4j
 @Service
 @Transactional

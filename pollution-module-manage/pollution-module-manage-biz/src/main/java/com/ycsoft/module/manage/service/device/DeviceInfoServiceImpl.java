@@ -2,6 +2,7 @@ package com.ycsoft.module.manage.service.device;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.thread.ThreadUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ycsoft.framework.common.pojo.PageResult;
@@ -11,7 +12,6 @@ import com.ycsoft.module.manage.controller.admin.project.vo.ShortcutControlReqVO
 import com.ycsoft.module.manage.dal.dataopject.*;
 import com.ycsoft.module.manage.dal.mysql.grade.GradeLogMapper;
 import com.ycsoft.module.manage.dal.mysql.grade.GradeRealtimeMapper;
-import com.ycsoft.module.manage.service.mqtt.MqttSubscribeService;
 import com.ycsoft.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.ycsoft.module.manage.controller.admin.pollution.vo.*;
 import com.ycsoft.module.manage.controller.admin.project.vo.ControlGradeReqVO;
@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -64,8 +65,8 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     private GradeRealtimeMapper gradeRealtimeMapper;
 
 
-    public void generateNumbers(String projectId) {
-            String maxId = deviceInfoMapper.getMaxId();
+    public GenerateNumbersRespVO generateNumbers(String projectId) {
+            String maxId = deviceInfoMapper.findMaxDeviceNumber();
             //当数据库里面没有数据时，插第一条
             if (StringUtil.isEmpty(maxId)){
                 deviceInfoMapper.insert(DeviceInfoDO.builder()
@@ -78,21 +79,26 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
                 String numberStr =maxId.substring(6);
                 if (numberStr.matches("\\d+")) { // 验证是否为纯数字
                     int numberId = Integer.parseInt(numberStr)+1;
+                    String realTime = DateUtil.now();
                     deviceInfoMapper.insert(DeviceInfoDO.builder()
                             .deviceId("4GMQTT"+numberId)
-                            .insertTime(DateUtil.now())
+                            .insertTime(realTime)
                             .projectId(projectId)
                             .build());
+                    return GenerateNumbersRespVO.builder()
+                            .deviceId("4GMQTT"+numberId)
+                            .insertTime(realTime)
+                            .build();
                 }else {
                     deviceInfoMapper.deleteId(maxId);
                     throw new RuntimeException("数据设备编号为："+maxId+"异常已删除");
                 }
             }
-
+        return null;
     }
 
-    public void deleteDeviceId(String deviceId) {
-        deviceInfoMapper.deleteById(deviceId);
+    public void deleteDeviceIds(List<String> deviceIds) {
+        deviceInfoMapper.deleteByIds(deviceIds);
     }
 
 
@@ -274,5 +280,14 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
                 .build());
     }
 
+
+
+
+    @Override
+    public void unbindNumber(String deviceId) {
+        deviceInfoMapper.update(new LambdaUpdateWrapper<DeviceInfoDO>()
+                .set(DeviceInfoDO::getFactoryDeviceId,null)
+                .eq(DeviceInfoDO::getDeviceId, deviceId));
+    }
 }
 

@@ -20,13 +20,13 @@ public interface DeviceInfoService {
      * 创建设备编号
      * @param projectId 项目ID
      */
-    void generateNumbers(String projectId);
+    GenerateNumbersRespVO generateNumbers(String projectId);
 
     /**
      * 删除设备管理
-     * @param deviceId
+     * @param deviceIds
      */
-    void deleteDeviceId(String deviceId);
+    void deleteDeviceIds(List<String> deviceIds);
 
     /**
      * 根据项目id获取设备编号
@@ -99,4 +99,10 @@ public interface DeviceInfoService {
      * @param vo
      */
     void shortcutControl(@Valid ShortcutControlReqVO vo);
+
+    /**
+     * 解绑厂家编号
+     * @param deviceId
+     */
+    void unbindNumber(String deviceId);
 }

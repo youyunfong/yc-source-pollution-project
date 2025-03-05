@@ -46,9 +46,8 @@ public class ProjectController {
     @GetMapping("/generate-numbers")
     @PermitAll
     @Operation(summary = "项目管理-生成设备编号")
-    public CommonResult<Boolean> generateNumbers(String projectId) {
-        deviceInfoService.generateNumbers(projectId);
-        return success(true);
+    public CommonResult<GenerateNumbersRespVO> generateNumbers(String projectId) {
+        return success(deviceInfoService.generateNumbers(projectId));
     }
 
 
@@ -83,4 +82,5 @@ public class ProjectController {
         projectManageService.deleteProject(projectId);
         return success(true);
     }
+
 }

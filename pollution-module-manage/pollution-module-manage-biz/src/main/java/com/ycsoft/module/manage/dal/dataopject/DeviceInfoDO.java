@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-public class DeviceInfoDO implements Serializable, TransPojo {
+public class DeviceInfoDO implements Serializable {
 
     @TableId(type = IdType.AUTO)
     @Schema(description = "设备编号", example = "dev123")

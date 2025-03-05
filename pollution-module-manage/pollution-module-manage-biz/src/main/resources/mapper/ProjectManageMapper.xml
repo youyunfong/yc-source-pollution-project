@@ -7,8 +7,11 @@
         t.project_id,
         t.project_name,
         a.area_name,
+        a.area_id,
         u.nickname as project_man_name,
+        u.id as project_man,
         u2.nickname as device_man_name,
+        u2.id as device_man,
         t.project_year,
         t.lng,
         t.lat
@@ -17,7 +20,8 @@
         left join admin_area a on a.area_id = t.area_id
         left join system_users u on u.id = t.project_man
         left join system_users u2 on u2.id = t.device_man
-        <where>
+        where
+            t.deleted = 0
             <if test="reqVO.projectMan != null and reqVO.projectMan != ''">
                 and t.project_man like concat('%',#{reqVO.projectMan},'%')
             </if>
@@ -27,6 +31,5 @@
             <if test="reqVO.areaId != null and reqVO.areaId != ''">
                 and t.area_id = #{reqVO.areaId}
             </if>
-        </where>
     </select>
 </mapper>

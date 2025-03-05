@@ -15,6 +15,9 @@ public class GenerateNumbersRespVO {
     @Schema(description = "项目ID", example = "proj123")
     private String deviceId;
 
+    @Schema(description = "厂家编号", example = "proj123")
+    private String factoryDeviceId;
+
     @Schema(description = "设备名称", example = "proj123")
     private String deviceName;
 

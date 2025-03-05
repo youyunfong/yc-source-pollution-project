@@ -1,5 +1,5 @@
 server:
-  port: 48080
+  port: 48081
 
 knife4j:
   production: false

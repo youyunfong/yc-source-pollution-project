@@ -21,11 +21,20 @@ public class ProjectListRespVO {
     @Schema(description = "行政区域", example = "area456")
     private String areaName;
 
-    @Schema(description = "项目管理员ID", example = "man789")
+    @Schema(description = "行政区域ID", example = "1234567890")
+    private String areaId;
+
+    @Schema(description = "项目管理员名称", example = "man789")
     private String projectManName;
 
-    @Schema(description = "设备管理员ID", example = "dev012")
+    @Schema(description = "项目管理员ID", example = "man789")
+    private Integer projectMan;
+
+    @Schema(description = "设备管理员名称", example = "dev012")
     private String deviceManName;
+
+    @Schema(description = "设备管理员ID", example = "dev012")
+    private Integer deviceMan;
 
     @Schema(description = "项目年份", example = "2023")
     private String projectYear;

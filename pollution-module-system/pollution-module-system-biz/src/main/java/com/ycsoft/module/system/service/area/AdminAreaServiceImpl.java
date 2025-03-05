@@ -58,37 +58,22 @@ public class AdminAreaServiceImpl implements AdminAreaService {
     @Resource
     private AdminAreaMapper adminAreaMapper;
 
-//    @Override
-//    public List<AdcdInfoRespVO> getAdcdTreeList(AdcdParamsReqVO params) {
-//        List<AdcdInfoRespVO> list = adminAreaMapper.getAdcdTreeList(params);
-//        return GetAdcdTree(list, list);
-//    }
-//
-//    private static List<AdcdInfoRespVO> GetAdcdTree(List<AdcdInfoRespVO> flist, List<AdcdInfoRespVO> list) {
-//        Iterator<AdcdInfoRespVO> it = flist.iterator();
-//        while (it.hasNext()) {
-//            AdcdInfoRespVO r = it.next();
-//            List<AdcdInfoRespVO> cList = list.stream().filter(s -> s.fatherCode != null && s.fatherCode.equals(r.areaCode))
-//                    .collect(Collectors.toList());
-//            if (!cList.isEmpty()) {
-//                r.children = GetAdcdTree(cList, list);
-//            }
-//        }
-//        return flist;
-//    }
-
     @Override
     public List<AdcdInfoRespVO> getAdcdTreeList(AdcdParamsReqVO params) {
         List<AdcdInfoRespVO> allNodes = adminAreaMapper.getAdcdTreeList(params);
 
         // 构建快速查找表：父级编码 -> 子节点列表
         Map<String, List<AdcdInfoRespVO>> parentMap = allNodes.stream()
-                .filter(node -> node.fatherCode != null)
-                .collect(Collectors.groupingBy(node -> node.fatherCode));
+                .filter(node -> node.fatherCode != null && !node.fatherCode.isEmpty())
+                .collect(Collectors.groupingBy(AdcdInfoRespVO::getFatherCode));
 
-        // 找出所有根节点（没有父节点或父节点不存在于列表中）
+        // 找出所有根节点（父级编码不存在于任何节点的areaCode中，或父级编码为空）
         List<AdcdInfoRespVO> roots = allNodes.stream()
-                .filter(node -> !parentMap.containsKey(node.areaCode))
+                .filter(node -> {
+                    // 父级编码为空或不存在于所有节点的areaCode中
+                    return node.fatherCode == null || node.fatherCode.isEmpty() ||
+                            allNodes.stream().noneMatch(n -> n.areaCode.equals(node.fatherCode));
+                })
                 .collect(Collectors.toList());
 
         return buildTree(roots, parentMap);
@@ -96,14 +81,12 @@ public class AdminAreaServiceImpl implements AdminAreaService {
 
     private List<AdcdInfoRespVO> buildTree(List<AdcdInfoRespVO> nodes,
                                            Map<String, List<AdcdInfoRespVO>> parentMap) {
-        for (AdcdInfoRespVO node : nodes) {
+        nodes.forEach(node -> {
             List<AdcdInfoRespVO> children = parentMap.get(node.areaCode);
             if (children != null && !children.isEmpty()) {
-                node.children = buildTree(children, parentMap);
+                node.setChildren(buildTree(children, parentMap));
             }
-        }
+        });
         return nodes;
     }
-
-
 }

@@ -53,11 +53,11 @@ public class PollutionController {
         return success( deviceInfoService.getProjectId());
     }
 
-    @GetMapping("/delete-deviceId")
+    @PostMapping("/delete-deviceId")
     @PermitAll
-    @Operation(summary = "面源污染-删除设备编号")
-    public CommonResult<Boolean> deleteDeviceId(String deviceId) {
-        deviceInfoService.deleteDeviceId(deviceId);
+    @Operation(summary = "面源污染-批量删除设备编号")
+    public CommonResult<Boolean> deleteDeviceId(@RequestBody List<String> deviceIds) {
+        deviceInfoService.deleteDeviceIds(deviceIds);
         return success(true);
     }
 
@@ -103,6 +103,14 @@ public class PollutionController {
     @Operation(summary = "面源污染-快捷档位控制")
     public CommonResult<Boolean> shortcutControl(@RequestBody @Valid ShortcutControlReqVO vo) {
         deviceInfoService.shortcutControl(vo);
+        return success(true);
+    }
+
+
+    @GetMapping("/unbind-number")
+    @Operation(summary = "面源污染-解绑厂家编号")
+    public CommonResult<Boolean> unbindNumber(String deviceId) {
+        deviceInfoService.unbindNumber(deviceId);
         return success(true);
     }
 }
