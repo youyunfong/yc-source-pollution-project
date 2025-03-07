@@ -36,12 +36,13 @@ public class AddDeviceReqVO {
     @Schema(description = "设备类型")
     private String deviceType;
 
+    @Schema(description = "图片")
+    private String pic;
+
 
     @Schema(description = "项目id", example = "123123")
     private String projectId;
 
     @Schema(description = "快捷档位列表", example = "Remark A")
     private List<Shortcut> shortcutList;
-
-
 }

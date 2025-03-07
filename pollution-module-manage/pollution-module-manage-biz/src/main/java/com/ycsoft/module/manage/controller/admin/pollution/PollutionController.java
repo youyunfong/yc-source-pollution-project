@@ -113,4 +113,10 @@ public class PollutionController {
         deviceInfoService.unbindNumber(deviceId);
         return success(true);
     }
+
+//    @PostMapping("/debug-device")
+//    @Operation(summary = "面源污染-调试设备")
+//    public CommonResult<DebugWebSocketRespVO> debugDevice(@RequestBody DebugWebSocketReqVO vo) {
+//        return success(deviceInfoService.debugDevice(vo));
+//    }
 }

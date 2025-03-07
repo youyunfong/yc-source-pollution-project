@@ -5,6 +5,7 @@ import com.fhs.core.trans.vo.TransPojo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class DeviceInfoDO implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @TableId(type = IdType.AUTO)
     @Schema(description = "设备编号", example = "dev123")
@@ -33,11 +36,17 @@ public class DeviceInfoDO implements Serializable {
     @Schema(description = "插入时间", example = "2023-01-01 00:00:00")
     private String insertTime;
 
+    @Schema(description = "修改时间", example = "2023-01-01 00:00:00")
+    private String updateTime;
+
     @Schema(description = "设备类型", example = "typeA")
     private String deviceType;
 
     @Schema(description = "视频监控", example = "http://example.com/video")
     private String video;
+
+    @Schema(description = "图片")
+    private String pic;
 
     @Schema(description = "经度", example = "123.456789")
     private String lng;
@@ -49,8 +58,7 @@ public class DeviceInfoDO implements Serializable {
     private Integer status;
 
     @Schema(description = "快捷档位列表", example = "Remark A")
-    @TableField(value = "shortcut")
-    private List<Shortcut> shortcutList;
+    private String shortcut;
 
     @Schema(description = "是否删除 (1表示删除)", example = "0")
     @TableLogic

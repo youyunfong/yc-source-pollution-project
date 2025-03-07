@@ -2,6 +2,7 @@ package com.ycsoft.module.manage.service.device;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -144,7 +145,9 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
                 .lng(vo.getLng())
                 .lat(vo.getLat())
                 .deviceType(vo.getDeviceType())
-                .shortcutList(vo.getShortcutList())
+                .updateTime(DateUtil.now())
+                .shortcut(JSONUtil.toJsonStr(vo.getShortcutList()))
+                .pic(vo.getPic())
                 .build());
     }
 

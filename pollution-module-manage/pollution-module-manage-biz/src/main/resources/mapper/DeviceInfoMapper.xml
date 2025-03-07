@@ -7,12 +7,14 @@
         SELECT
         d.device_id,
         d.project_id,
+        p.project_name,
         p.project_man,
         d.factory_device_id,
         d.device_name,
         d.insert_time,
         d.device_type,
         d.video,
+        d.pic,
         d.lng,
         d.lat,
         w.water,
@@ -21,7 +23,7 @@
         f.tm as flow_tm,
         g.grade,
         g.tm as grade_tm,
-        d.shortcut
+        d.shortcut,
         d.status
         FROM
         device_info d
